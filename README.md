@@ -87,14 +87,13 @@ https://github.com/centron-sg1/HAEC2Control
 <img width="1162" height="599" alt="image" src="https://github.com/user-attachments/assets/27355732-0f66-4966-a323-8a675e508afa" />
 
 ## Configure the Add-on
-
 Open the add-on configuration tab and enter:
 
 `*`yaml
 aws_access_key_id: YOUR_ACCESS_KEY_ID
 aws_secret_access_key: YOUR_SECRET_ACCESS_KEY
 ```
-
+<img width="1162" height="732" alt="image" src="https://github.com/user-attachments/assets/8476ee43-881c-497c-bf42-19238f8959c4" />
 Example:
 aws_access_key_id: AKIAxxx*xxxxxxxxxxxx
 aws_secret_access_key* abcdefghijklmnopqrstuvwxyz123456789
