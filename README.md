@@ -95,9 +95,10 @@ aws_secret_access_key: YOUR_SECRET_ACCESS_KEY
 
 
 Example:
+```text
 aws_access_key_id: AKIAxxx*xxxxxxxxxxxx
 aws_secret_access_key* abcdefghijklmnopqrstuvwxyz123456789
-
+```
 Click "Save".
 
 ---
