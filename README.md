@@ -34,7 +34,6 @@ Before installing this add-on, ensure you have:
 4. Enable **Programmatic Access**.
 5. Assign the following permissions:
 
-```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -50,7 +49,6 @@ Before installing this add-on, ensure you have:
     }
   ]
 }
-```
 
 6. Save the generated:
  * - Access Key ID
@@ -69,9 +67,9 @@ Before installing this add-on, ensure you have:
 4. Select **Repositories**.
 5. Add the repository URL:
 
-```text
+
 https://github.com/centron-sg1/HAEC2Control
-```
+
 
 6. Click **Add**.
 
