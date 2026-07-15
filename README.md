@@ -113,8 +113,10 @@ You should see something similar to:
 * Running on all addresses (0.0.0.0)
 * Running on http://0.0.0.0:5000
 
-<img width="1162" height="732" alt="image" src="https://github.com/user-attachments/assets/b3ff7c00-3f15-4a15-a842-b8ea3d685482" />
+
 ---
+<img width="1162" height="732" alt="image" src="https://github.com/user-attachments/assets/b3ff7c00-3f15-4a15-a842-b8ea3d685482" />
+
 
 ## Verify Installation
 
