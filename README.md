@@ -159,6 +159,7 @@ Example response:
 ## Example Home Assistant Sensor
 
 The following REST sensor displays the current state of an EC2 instance in a user-friendly format, Add to your configuration.yaml.
+Remember to change/add you own region and instance ID..
 
 ```yaml
 sensor:
@@ -192,7 +193,7 @@ This sensor polls the API every 30 seconds and converts the raw AWS EC2 state in
 ## Example Home Assistant Switch
 
 The following REST switch allows Home Assistant to start and stop an AWS EC2 instance directly from the dashboard, Add to your configuration.yaml..
-
+Remember to change/add you own region and instance ID..
 ```yaml
 switch:
   - platform: rest
