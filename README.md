@@ -97,7 +97,7 @@ aws_secret_access_key: YOUR_SECRET_ACCESS_KEY
 Example:
 ```text
 aws_access_key_id: AKIAxxx*xxxxxxxxxxxx
-aws_secret_access_key* abcdefghijklmnopqrstuvwxyz123456789
+aws_secret_access_key: abcdefghijklmnopqrstuvwxyz123456789
 ```
 Click "Save".
 
@@ -110,8 +110,9 @@ Click "Save".
 
 You should see something similar to:
 
-* Running on all addresses (0.0.0.0)
-* Running on http://HOME_ASSISTANT_IP:5000
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://HOME_ASSISTANT_IP:5000
 
 ---
 
