@@ -272,15 +272,15 @@ switch:
     method: POST
 
     body_on: >
-      {"action":"start","region":"ap-southeast-2","instance_id":"i-03e74250d9e20285e"}
+      {"action":"start","region":"ap-southeast-2","instance_id":"ii-0123456789abcdef0"}
 
     body_off: >
-      {"action":"stop","region":"ap-southeast-2","instance_id":"i-03e74250d9e20285e"}
+      {"action":"stop","region":"ap-southeast-2","instance_id":"i-0123456789abcdef0"}
 
     headers:
       Content-Type: application/json
 
-    state_resource: http://localhost:5000/status/ap-southeast-2/i-03e74250d9e20285e
+    state_resource: http://localhost:5000/status/ap-southeast-2/i-0123456789abcdef0
 
     is_on_template: "{{ value_json.state == 'running' }}"
 
@@ -295,7 +295,7 @@ When the switch is turned **On**, Home Assistant sends:
 {
   "action": "start",
   "region": "ap-southeast-2",
-  "instance_id": "i-03e74250d9e20285e"
+  "instance_id": "i-0123456789abcdef0"
 }
 ```
 
@@ -305,14 +305,14 @@ When the switch is turned **Off**, Home Assistant sends:
 {
   "action": "stop",
   "region": "ap-southeast-2",
-  "instance_id": "i-03e74250d9e20285e"
+  "instance_id": "i-0123456789abcdef0"
 }
 ```
 
 The switch state is automatically updated every 30 seconds using:
 
 ```http
-GET /status/ap-southeast-2/i-03e74250d9e20285e
+GET /status/ap-southeast-2/i-0123456789abcdef0
 ```
 
 ### Dashboard Result
