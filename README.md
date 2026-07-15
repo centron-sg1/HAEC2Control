@@ -84,6 +84,7 @@ https://github.com/centron-sg1/HAEC2Control
 3. Wait for the Docker image to build.
 
 ---
+<img width="1162" height="599" alt="image" src="https://github.com/user-attachments/assets/27355732-0f66-4966-a323-8a675e508afa" />
 
 ## Configure the Add-on
 
