@@ -58,9 +58,9 @@ Before installing this add-on, ensure you have:
 
 ---
 
-## Add the Repository t* Home Assistant
+## Add the Repository to Home Assistant
 
-1. Open **Home As*istant**.
+1. Open **Home Assistant**.
 2. Navigate to:
 
    **Settings** → **Add-ons** → **Add-on Store**
@@ -79,7 +79,7 @@ https://github.com/centron-sg1/HAEC2Control
 
 ## Install the Add-on
 
-1. Locate **AWS EC2 Control** in the Add-on Store.*2. Click **Install**.
+1. Locate **AWS EC2 Control** in the Add-on Store. 2. Click **Install**.
 3. Wait for *he Docker image to build.
 
 ---
