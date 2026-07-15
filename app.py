@@ -5,12 +5,12 @@ from datetime import datetime
 app = Flask(__name__)
 
 
-# ✅ Create EC2 client
+# Create EC2 client
 def get_ec2(region):
     return boto3.client("ec2", region_name=region)
 
 
-# ✅ Helper: format EC2 instance data
+# Helper: format EC2 instance data
 def format_instances(reservations):
     instances = []
 
@@ -18,7 +18,6 @@ def format_instances(reservations):
         for i in r["Instances"]:
             name = None
 
-            # Get Name tag if exists
             if "Tags" in i:
                 for t in i["Tags"]:
                     if t["Key"] == "Name":
@@ -33,13 +32,11 @@ def format_instances(reservations):
     return instances
 
 
-# ✅ Root test endpoint
 @app.route("/")
 def home():
     return "AWS EC2 Control API (boto3) running"
 
 
-# ✅ CONTROL endpoint (for Home Assistant REST switch)
 @app.route("/control", methods=["POST"])
 def control():
     try:
@@ -56,10 +53,13 @@ def control():
 
         if action == "start":
             ec2.start_instances(InstanceIds=[instance_id])
+
         elif action == "stop":
             ec2.stop_instances(InstanceIds=[instance_id])
+
         elif action == "reboot":
             ec2.reboot_instances(InstanceIds=[instance_id])
+
         else:
             return jsonify({"error": "Invalid action"}), 400
 
@@ -74,14 +74,18 @@ def control():
         return jsonify({"error": str(e)}), 500
 
 
-# ✅ STATUS endpoint (used by HA switch state + sensors)
 @app.route("/status/<region>/<instance_id>")
 def status(region, instance_id):
     try:
         ec2 = get_ec2(region)
 
-        response = ec2.describe_instances(InstanceIds=[instance_id])
-        instances = format_instances(response["Reservations"])
+        response = ec2.describe_instances(
+            InstanceIds=[instance_id]
+        )
+
+        instances = format_instances(
+            response["Reservations"]
+        )
 
         if not instances:
             return jsonify({"error": "Instance not found"}), 404
@@ -99,14 +103,16 @@ def status(region, instance_id):
         return jsonify({"error": str(e)}), 500
 
 
-# ✅ LIST ALL INSTANCES (optional but useful)
 @app.route("/instances/<region>")
 def list_instances(region):
     try:
         ec2 = get_ec2(region)
 
         response = ec2.describe_instances()
-        instances = format_instances(response["Reservations"])
+
+        instances = format_instances(
+            response["Reservations"]
+        )
 
         return jsonify({
             "count": len(instances),
@@ -117,6 +123,5 @@ def list_instances(region):
         return jsonify({"error": str(e)}), 500
 
 
-# ✅ Run Flask app
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000)
+    app.run(host="0.0.0.0", port=5000)
