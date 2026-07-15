@@ -67,7 +67,7 @@ Before installing this add-on, ensure you have:
 
 3. Click the three*dot menu in the top-right corner.
 4. Select **Repositories**.
-5. Add *he repository URL:
+5. Add the repository URL:
 
 ```text
 https://github.com/centron-sg1/HAEC2Control
@@ -116,8 +116,6 @@ You should see something similar to:
 
 
 ---
-
-
 
 ## Verify Installation
 
