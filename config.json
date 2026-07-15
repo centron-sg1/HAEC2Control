@@ -1,0 +1,21 @@
+{
+  "name": "AWS EC2 Control",
+  "version": "1.0",
+  "slug": "aws_ec2_control",
+  "description": "Control AWS EC2 instances via REST API",
+  "startup": "services",
+  "boot": "auto",
+  "arch": ["amd64", "aarch64", "armv7"],
+  "host_network": true,
+  "ports": {
+    "5000/tcp": 5000
+  },
+  "options": {
+    "aws_access_key_id": "",
+    "aws_secret_access_key": ""
+  },
+  "schema": {
+    "aws_access_key_id": "str",
+    "aws_secret_access_key": "str"
+  }
+}
