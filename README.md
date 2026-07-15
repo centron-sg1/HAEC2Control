@@ -81,11 +81,11 @@ https://github.com/centron-sg1/HAEC2Control
 
 1. Locate **AWS EC2 Control** in the Add-on Store.
 2. Click **Install**.
-3. Wait for *he Docker image to build.
+3. Wait for the Docker image to build.
 
 ---
 
-##*Configure the Add-on
+##Configure the Add-on
 
 Open the add*on configuration tab and enter:
 
