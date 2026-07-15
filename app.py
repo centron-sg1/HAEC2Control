@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 import boto3
-from datetime import datetime
+from datetime import datetime, UTC
 
 app = Flask(__name__)
 
