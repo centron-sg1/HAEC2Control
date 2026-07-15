@@ -229,4 +229,4 @@ AWS EC2 Control API (boto3)*running
 
 ## License
 
-MIT License.
+GPL-3
