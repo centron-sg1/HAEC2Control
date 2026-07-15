@@ -79,7 +79,7 @@ https://github.com/centron-sg1/HAEC2Control
 
 ## Install the Add-on
 
-1. Locate **AWS*EC2 Control** in the Add-on Store.*2. Click **Install**.
+1. Locate **AWS EC2 Control** in the Add-on Store.*2. Click **Install**.
 3. Wait for *he Docker image to build.
 
 ---
@@ -89,8 +89,8 @@ https://github.com/centron-sg1/HAEC2Control
 Open the add*on configuration tab and enter:
 
 `*`yaml
-aws_access_key_id: YOUR_ACCE*S_KEY_ID
-aws_secret_access_key: YO*R_SECRET_ACCESS_KEY
+aws_access_key_id: YOUR_ACCESS_KEY_ID
+aws_secret_access_key: YOUR_SECRET_ACCESS_KEY
 ```
 
 Example:
@@ -107,7 +107,7 @@ Click **Save**.
 
 1. Click **Start**.*2. Open the***Logs** tab*
 
-You should see something similar*to:
+You should see something similar to:
 
 ```text
 * Running on all addr*sses (0.0.0.0)
@@ -116,15 +116,15 @@ You should see something similar*to:
 
 ---
 
-## Verify I*stallation
+## Verify Isstallation
 
 Open a browser and nav*gate to:
 
 ```text
-http*//HOME_ASSISTANT_IP:5000/
+http://HOME_ASSISTANT_IP:5000/
 ```
 
-Exa*ple:
+Example:
 
 ```text
 http://192.168.2.4:5000/
@@ -132,18 +132,18 @@ http://192.168.2.4:5000/
 
 Expected response:
 
-```te*t
-AWS EC2 Control API (boto3) runn*ng
+```text
+AWS EC2 Control API (boto3) runnnng
 ```
 
 ---
 
 ## Test AWS Connectiv*ty
 
-List all EC2 instances in a re*ion:
+List all EC2 instances in a region:
 
 ```text
-http://HOME_ASSISTAN*_IP:5000/instances/ap-southeast-2
+http://HOME_ASSISTANT_IP:5000/instances/ap-southeast-2
 *``
 
 Example response:
@@ -153,7 +153,7 @@ Example response:
  *"count": 1,
   "instances": [
     {
-      "id": "i-03e74250d9e20285e",
+      "id": "i-0123456789abcdef0",
       "name": "Sydney Server",
       "state": "running"
     }
@@ -169,10 +169,10 @@ Add the following to your *onfiguration:
 
 ```yaml
 sensor:
-  -*platform: rest
-    name: EC2 Sydne* State
-    unique_id: ec2_sydney_s*ate
-    resource: http://localhost:5000/status/ap-southeast-2/i-03e74250d9e20285e
+  -platform: rest
+    name: EC2 Sydney State
+    unique_id: ec2_sydney_state
+    resource: http://localhost:5000/status/ap-southeast-2/i-0123456789abcdef0
     method: GET
     va*ue_template: >
       {% set s = va*ue_json.state %}
@@ -190,33 +190,33 @@ Restart Home Assistant.*
 
 ## Create a Control Switch
 
-*dd the following to your configura*ion:
+add the following to your configuration.yaml file:
 
 ```yaml
 switch:
-  - platform* rest
+  - platform: rest
     name: EC2_Switch_Sydney
 *   resource: http://localhost:5000/control
     method: POST
 
-    body*on: >
-      {"action":"start","reg*on":"ap-southeast-2","instance_id"*"i-03e74250d9e20285e"}
+    body_on: >
+      {"action":"start","reg*on":"ap-southeast-2","instance_id":"i-0123456789abcdef0"}
 
-    body_o*f: >
-      {"action":"stop","regio*":"ap-southeast-2","instance_id":"*-03e74250d9e20285e"}
+    body_oof: >
+      {"action":"stop","region":"ap-southeast-2","instance_id":"i-0123456789abcdef0"}
 
-    headers:*      Content-Type: application/js*n
+    headers:      Content-Type: application/json
 
-    state_resource: http://localhost:5000/status/ap-southeast-2/i-03e74250d9e20285e
+    state_resource: http://localhost:5000/status/ap-southeast-2/i-0123456789abcdef0
 
-    is_on_templa*e: "{{ value_json.state == 'runnin*' }}"
+    is_on_template: "{{ value_json.state == 'running' }}"
 
     scan_interval: 30
 ```
 
-*estart Home Assistant.
+restart Home Assistant.
 
-A switch w*ll now appear on your dashboard al*owing you to start and stop your E*2 instance.
+A switch will now appear on your dashboard allowing you to start and stop your Ec2 instance.
 
 ---
 
@@ -227,41 +227,41 @@ A switch w*ll now appear on your dashboard al*owing you to start and stop your E
 Verify:
 
 ```yaml
-aws_access_key_*d:
+aws_access_key_id:
 aws_secret_access_key:
 ```
 
-hav* been configured correctly.
+have been configured correctly.
 
 ### A*cessDenied
 
 Ensure your IAM user h*s:
 
 - ec2:DescribeInstances
-- ec2:*tartInstances
+- ec2:StartInstances
 - ec2:StopInstances
-* ec2:RebootInstances
+- ec2:RebootInstances
 
 ### Add-on s*arts but API is unreachable
 
-Check*the add-on logs and verify port 50*0 is listening:
+Check the add-on logs and verify port 5000 is listening:
 
 ```bash
-curl http*//localhost:5000/
+curl http://localhost:5000/
 ```
 
 Expected re*ponse:
 
 ```text
-AWS EC2 Control AP* (boto3) running
+AWS EC2 Control API (boto3) running
 ```
 
 ### No insta*ces returned
 
 Verify:
 - The region*is correct.
-- The IAM user has*EC2 permissions.
-- The instance*exists*in the selected region.
+- The IAM user has EC2 permissions.
+- The instance exists in the selected region.
 ### Health Check
 
 ```http
