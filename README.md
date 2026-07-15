@@ -93,7 +93,9 @@ Open the add-on configuration tab and enter:
 aws_access_key_id: YOUR_ACCESS_KEY_ID
 aws_secret_access_key: YOUR_SECRET_ACCESS_KEY
 ```
-<img width="1162" height="732" alt="image" src="https://github.com/user-attachments/assets/8476ee43-881c-497c-bf42-19238f8959c4" />
+<img width="1162" height="732" alt="image" src="https://github.com/user-attachments/assets/b3ff7c00-3f15-4a15-a842-b8ea3d685482" />
+
+
 Example:
 aws_access_key_id: AKIAxxx*xxxxxxxxxxxx
 aws_secret_access_key* abcdefghijklmnopqrstuvwxyz123456789
