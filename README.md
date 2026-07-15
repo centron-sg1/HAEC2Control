@@ -236,7 +236,7 @@ sensor:
   - platform: rest
     name: EC2 Sydney State
     unique_id: ec2_sydney_state
-    resource: http://localhost:5000/status/ap-southeast-2/i-03e74250d9e20285e
+    resource: http://localhost:5000/status/ap-southeast-2/i-0123456789abcdef0
     method: GET
     value_template: >
       {% set s = value_json.state %}
@@ -260,7 +260,71 @@ sensor:
 
 This sensor polls the API every 30 seconds and converts the raw AWS EC2 state into a more readable status for dashboards, automations, and notifications.
 
+## Example Home Assistant Switch
 
+The following REST switch allows Home Assistant to start and stop an AWS EC2 instance directly from the dashboard, Add to your configuration.yaml..
+
+```yaml
+switch:
+  - platform: rest
+    name: EC2_Switch_Sydney
+    resource: http://localhost:5000/control
+    method: POST
+
+    body_on: >
+      {"action":"start","region":"ap-southeast-2","instance_id":"i-03e74250d9e20285e"}
+
+    body_off: >
+      {"action":"stop","region":"ap-southeast-2","instance_id":"i-03e74250d9e20285e"}
+
+    headers:
+      Content-Type: application/json
+
+    state_resource: http://localhost:5000/status/ap-southeast-2/i-03e74250d9e20285e
+
+    is_on_template: "{{ value_json.state == 'running' }}"
+
+    scan_interval: 30
+```
+
+### How It Works
+
+When the switch is turned **On**, Home Assistant sends:
+
+```json
+{
+  "action": "start",
+  "region": "ap-southeast-2",
+  "instance_id": "i-03e74250d9e20285e"
+}
+```
+
+When the switch is turned **Off**, Home Assistant sends:
+
+```json
+{
+  "action": "stop",
+  "region": "ap-southeast-2",
+  "instance_id": "i-03e74250d9e20285e"
+}
+```
+
+The switch state is automatically updated every 30 seconds using:
+
+```http
+GET /status/ap-southeast-2/i-03e74250d9e20285e
+```
+
+### Dashboard Result
+
+The switch will:
+
+- ✅ Turn ON when the EC2 instance is running
+- ⏳ Show updating while the instance is starting
+- ⏳ Show updating while the instance is stopping
+- ⛔ Turn OFF when the EC2 instance is stopped
+
+This provides a simple and native Home Assistant switch for controlling EC2 instances without requiring custom integrations.
 
 ## License
 
