@@ -269,8 +269,7 @@ have been configured correctly.
 
 ### AccessDenied
 
-Ensure your IAM user h*s:
-
+Ensure your IAM user has correct permissions:
 - ec2:DescribeInstances
 - ec2:StartInstances
 - ec2:StopInstances
@@ -336,11 +335,7 @@ Response:
   ]
 }
 ```
-
 ---
-
-```
-
 
 ## License
 
