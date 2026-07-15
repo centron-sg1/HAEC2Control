@@ -95,10 +95,8 @@ aws_secret_access_key: YOUR_SECRET_ACCESS_KEY
 ```
 
 Example:
-*```yaml
 aws_access_key_id: AKIAxxx*xxxxxxxxxxxx
 aws_secret_access_key* abcdefghijklmnopqrstuvwxyz123456789
-```
 
 Click **Save**.
 
@@ -111,10 +109,10 @@ Click **Save**.
 
 You should see something similar to:
 
-```text
+
 * Running on all addresses (0.0.0.0)
 * Running on http://0.0.0.0:5000
-```
+
 
 ---
 
