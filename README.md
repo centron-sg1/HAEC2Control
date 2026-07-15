@@ -33,7 +33,7 @@ Before installing this add-on, ensure you have:
 3. Create a new user.
 4. Enable **Programmatic Access**.
 5. Assign the following permissions:
-
+```text
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -49,9 +49,9 @@ Before installing this add-on, ensure you have:
     }
   ]
 }
-
+```
 6. Save the generated:
- * - Access Key ID
+   - Access Key ID
    - Secret Acces* Key
 
 ---
@@ -67,9 +67,9 @@ Before installing this add-on, ensure you have:
 4. Select **Repositories**.
 5. Add the repository URL:
 
-
+```text
 https://github.com/centron-sg1/HAEC2Control
-
+```
 
 6. Click **Add**.
 
@@ -110,10 +110,8 @@ Click "Save".
 
 You should see something similar to:
 
-
 * Running on all addresses (0.0.0.0)
 * Running on http://HOME_ASSISTANT_IP:5000
-
 
 ---
 
@@ -139,13 +137,12 @@ List all EC2 instances in a region:
 
 ```text
 http://HOME_ASSISTANT_IP:5000/instances/ap-southeast-2
-*``
-
+```
 Example response:
 
 ```json
 {
- *"count": 1,
+ "count": 1,
   "instances": [
     {
       "id": "i-0123456789abcdef0",
@@ -154,7 +151,7 @@ Example response:
     }
   ]
 }
-`*`
+```
 
 ---
 
