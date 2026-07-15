@@ -109,11 +109,11 @@ Click "Save".
 2. Open the "Logs" tab
 
 You should see something similar to:
-
+```text
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
  * Running on http://HOME_ASSISTANT_IP:5000
-
+```
 ---
 
 ## Verify Installation
