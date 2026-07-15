@@ -66,7 +66,7 @@ Before installing this add-on, ensure you have:
    **Settings** → **Add-ons** → **Add-on Store**
 
 3. Click the three*dot menu in the top-right corner.
-*. Select **Repositories**.
+4. Select **Repositories**.
 5. Add *he repository URL:
 
 ```text
@@ -79,7 +79,8 @@ https://github.com/centron-sg1/HAEC2Control
 
 ## Install the Add-on
 
-1. Locate **AWS EC2 Control** in the Add-on Store. 2. Click **Install**.
+1. Locate **AWS EC2 Control** in the Add-on Store.
+2. Click **Install**.
 3. Wait for *he Docker image to build.
 
 ---
@@ -96,7 +97,7 @@ aws_secret_access_key: YOUR_SECRET_ACCESS_KEY
 Example:
 *```yaml
 aws_access_key_id: AKIAxxx*xxxxxxxxxxxx
-aws_secret_access_key* abcdefghijklmnopqrstuvwxyz1234567*9
+aws_secret_access_key* abcdefghijklmnopqrstuvwxyz123456789
 ```
 
 Click **Save**.
@@ -105,18 +106,19 @@ Click **Save**.
 
 ## St*rt the Add-on
 
-1. Click **Start**.*2. Open the***Logs** tab*
+1. Click **Start**.
+2. Open the***Logs** tab*
 
 You should see something similar to:
 
 ```text
-* Running on all addr*sses (0.0.0.0)
+* Running on all addresses (0.0.0.0)
 * Running on http://0.0.0.0:5000
 ```
 
 ---
 
-## Verify Isstallation
+## Verify Installation
 
 Open a browser and nav*gate to:
 
