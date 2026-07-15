@@ -227,6 +227,41 @@ Expected response:
 AWS EC2 Control API (boto3)*running
 ```
 
+## Example Home Assistant Sensor
+
+The following REST sensor displays the current state of an EC2 instance in a user-friendly format, Add to your configuration.yaml.
+
+```yaml
+sensor:
+  - platform: rest
+    name: EC2 Sydney State
+    unique_id: ec2_sydney_state
+    resource: http://localhost:5000/status/ap-southeast-2/i-03e74250d9e20285e
+    method: GET
+    value_template: >
+      {% set s = value_json.state %}
+      {% if s == 'running' %} Running ✅
+      {% elif s == 'pending' %} Starting ⏳
+      {% elif s == 'stopping' %} Stopping ⏳
+      {% elif s == 'stopped' %} Stopped ⛔
+      {% else %} {{ s }}
+      {% endif %}
+    scan_interval: 30
+```
+
+### Example States
+
+| AWS State | Home Assistant Display |
+|------------|------------------------|
+| running | Running ✅ |
+| pending | Starting ⏳ |
+| stopping | Stopping ⏳ |
+| stopped | Stopped ⛔ |
+
+This sensor polls the API every 30 seconds and converts the raw AWS EC2 state into a more readable status for dashboards, automations, and notifications.
+
+
+
 ## License
 
 GPL-3
