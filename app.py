@@ -67,7 +67,7 @@ def control():
             "result": action,
             "instance_id": instance_id,
             "region": region,
-            "timestamp": datetime.utcnow().isoformat()
+            "timestamp": datetime.now(UTC).isoformat()
         })
 
     except Exception as e:
@@ -96,7 +96,7 @@ def status(region, instance_id):
             "id": instance["id"],
             "name": instance["name"],
             "state": instance["state"],
-            "last_updated": datetime.utcnow().isoformat()
+            "last_updated": datetime.now(UTC).isoformat()
         })
 
     except Exception as e:
