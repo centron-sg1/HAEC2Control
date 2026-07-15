@@ -112,7 +112,7 @@ You should see something similar to:
 
 
 * Running on all addresses (0.0.0.0)
-* Running on http://0.0.0.0:5000
+* Running on http://HOME_ASSISTANT_IP:5000
 
 
 ---
@@ -123,12 +123,6 @@ Open a browser and navigate to:
 
 ```text
 http://HOME_ASSISTANT_IP:5000/
-```
-
-Example:
-
-```text
-http://192.168.2.4:5000/
 ```
 
 Expected response:
@@ -155,7 +149,7 @@ Example response:
   "instances": [
     {
       "id": "i-0123456789abcdef0",
-      "name": "Sydney Server",
+      "name": "Your Server",
       "state": "running"
     }
   ]
@@ -172,7 +166,7 @@ The following REST sensor displays the current state of an EC2 instance in a use
 sensor:
   - platform: rest
     name: EC2 Sydney State
-    unique_id: ec2_sydney_state
+    unique_id: ec2_yourserver_state
     resource: http://localhost:5000/status/ap-southeast-2/i-0123456789abcdef0
     method: GET
     value_template: >
@@ -204,7 +198,7 @@ The following REST switch allows Home Assistant to start and stop an AWS EC2 ins
 ```yaml
 switch:
   - platform: rest
-    name: EC2_Switch_Sydney
+    name: EC2_Switch_YourServer
     resource: http://localhost:5000/control
     method: POST
 
