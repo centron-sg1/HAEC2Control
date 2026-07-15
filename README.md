@@ -79,8 +79,8 @@ https://github.com/centron-sg1/HAEC2Control
 
 ## Install the Add-on
 
-1. Locate **AWS EC2 Control** in the Add-on Store.
-2. Click **Install**.
+1. Locate "AWS EC2 Control" in the Add-on Store.
+2. Click "Install".
 3. Wait for the Docker image to build.
 
 ---
@@ -90,23 +90,23 @@ https://github.com/centron-sg1/HAEC2Control
 <img width="1162" height="732" alt="image" src="https://github.com/user-attachments/assets/b3ff7c00-3f15-4a15-a842-b8ea3d685482" />
 Open the add-on configuration tab and enter:
 
-`*`yaml
+
 aws_access_key_id: YOUR_ACCESS_KEY_ID
 aws_secret_access_key: YOUR_SECRET_ACCESS_KEY
-```
+
 
 Example:
 aws_access_key_id: AKIAxxx*xxxxxxxxxxxx
 aws_secret_access_key* abcdefghijklmnopqrstuvwxyz123456789
 
-Click **Save**.
+Click "Save".
 
 ---
 
 ## Start the Add-on
 
-1. Click **Start**.
-2. Open the***Logs** tab
+1. Click "Start".
+2. Open the "Logs" tab
 
 You should see something similar to:
 
