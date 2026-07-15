@@ -85,9 +85,9 @@ https://github.com/centron-sg1/HAEC2Control
 
 ---
 
-##Configure the Add-on
+## Configure the Add-on
 
-Open the add*on configuration tab and enter:
+Open the add-on configuration tab and enter:
 
 `*`yaml
 aws_access_key_id: YOUR_ACCESS_KEY_ID
@@ -104,10 +104,10 @@ Click **Save**.
 
 ---
 
-## St*rt the Add-on
+## Start the Add-on
 
 1. Click **Start**.
-2. Open the***Logs** tab*
+2. Open the***Logs** tab
 
 You should see something similar to:
 
@@ -120,7 +120,7 @@ You should see something similar to:
 
 ## Verify Installation
 
-Open a browser and nav*gate to:
+Open a browser and navigate to:
 
 ```text
 http://HOME_ASSISTANT_IP:5000/
@@ -140,7 +140,7 @@ AWS EC2 Control API (boto3) runnnng
 
 ---
 
-## Test AWS Connectiv*ty
+## Test AWS Connectivity
 
 List all EC2 instances in a region:
 
@@ -164,150 +164,6 @@ Example response:
 `*`
 
 ---
-
-## Create a Home Assistant*Sensor
-
-Add the following to your *onfiguration:
-
-```yaml
-sensor:
-  -platform: rest
-    name: EC2 Sydney State
-    unique_id: ec2_sydney_state
-    resource: http://localhost:5000/status/ap-southeast-2/i-0123456789abcdef0
-    method: GET
-    va*ue_template: >
-      {% set s = va*ue_json.state %}
-      {% if s == *running' %} Running ✅
-      {% eli* s == 'pending' %} Starting ⏳
-    * {% elif s == 'stopping' %} Stoppi*g ⏳
-      {% elif s == 'stopped' %* Stopped ⛔
-      {% else %} {{ s }*
-      {% endif %}
-    scan_interv*l: 30
-```
-
-Restart Home Assistant.*
----
-
-## Create a Control Switch
-
-add the following to your configuration.yaml file:
-
-```yaml
-switch:
-  - platform: rest
-    name: EC2_Switch_Sydney
-*   resource: http://localhost:5000/control
-    method: POST
-
-    body_on: >
-      {"action":"start","reg*on":"ap-southeast-2","instance_id":"i-0123456789abcdef0"}
-
-    body_oof: >
-      {"action":"stop","region":"ap-southeast-2","instance_id":"i-0123456789abcdef0"}
-
-    headers:      Content-Type: application/json
-
-    state_resource: http://localhost:5000/status/ap-southeast-2/i-0123456789abcdef0
-
-    is_on_template: "{{ value_json.state == 'running' }}"
-
-    scan_interval: 30
-```
-
-restart Home Assistant.
-
-A switch will now appear on your dashboard allowing you to start and stop your Ec2 instance.
-
----
-
-## Troubleshooti*g
-
-### Unable to locate credential*
-
-Verify:
-
-```yaml
-aws_access_key_id:
-aws_secret_access_key:
-```
-
-have been configured correctly.
-
-### A*cessDenied
-
-Ensure your IAM user h*s:
-
-- ec2:DescribeInstances
-- ec2:StartInstances
-- ec2:StopInstances
-- ec2:RebootInstances
-
-### Add-on s*arts but API is unreachable
-
-Check the add-on logs and verify port 5000 is listening:
-
-```bash
-curl http://localhost:5000/
-```
-
-Expected re*ponse:
-
-```text
-AWS EC2 Control API (boto3) running
-```
-
-### No insta*ces returned
-
-Verify:
-- The region*is correct.
-- The IAM user has EC2 permissions.
-- The instance exists in the selected region.
-### Health Check
-
-```http
-GET /
-```
-
-Response:
-
-```text
-AWS EC2 Control API (boto3) running
-```
-
----
-
-### List Instances
-
-```http
-GET /instances/<region>
-```
-
-Example:
-
-```http
-GET /instances/ap-southeast-2
-```
-
-Response:
-
-```json
-{
-  "count": 2,
-  "instances": [
-    {
-      "id": "i-0123456789abcdef0",
-      "name": "HomeAssistant-Server",
-      "state": "running"
-    }
-  ]
-}
-```
-
----
-
-```
 
 ## Example Home Assistant Sensor
 
@@ -407,6 +263,94 @@ The switch will:
 - ⛔ Turn OFF when the EC2 instance is stopped
 
 This provides a simple and native Home Assistant switch for controlling EC2 instances without requiring custom integrations.
+
+## Troubleshooting
+
+### Unable to locate credential
+
+Verify:
+
+```yaml
+aws_access_key_id:
+aws_secret_access_key:
+```
+
+have been configured correctly.
+
+### AccessDenied
+
+Ensure your IAM user h*s:
+
+- ec2:DescribeInstances
+- ec2:StartInstances
+- ec2:StopInstances
+- ec2:RebootInstances
+
+### Add-on starts but API is unreachable
+
+Check the add-on logs and verify port 5000 is listening:
+
+```bash
+curl http://localhost:5000/
+```
+
+Expected response:
+
+```text
+AWS EC2 Control API (boto3) running
+```
+
+### No instances returned
+
+Verify:
+- The region is correct.
+- The IAM user has EC2 permissions.
+- The instance exists in the selected region.
+### Health Check
+
+```http
+GET /
+```
+
+Response:
+
+```text
+AWS EC2 Control API (boto3) running
+```
+
+---
+
+### List Instances
+
+```http
+GET /instances/<region>
+```
+
+Example:
+
+```http
+GET /instances/ap-southeast-2
+```
+
+Response:
+
+```json
+{
+  "count": 2,
+  "instances": [
+    {
+      "id": "i-0123456789abcdef0",
+      "name": "HomeAssistant-Server",
+      "state": "running"
+    }
+  ]
+}
+```
+
+---
+
+```
+
 
 ## License
 
